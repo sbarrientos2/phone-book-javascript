@@ -12,6 +12,7 @@ document.querySelector("form").addEventListener("submit", function(event) {
 });
 
 // Function to add contact 
+// Function to add contact 
 function addContact() {
   // Check that the name is not empty
   const name = nameInput.value.trim();
@@ -28,12 +29,13 @@ function addContact() {
   }
 
   // Save the new contact to local storage
-  const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
-  contacts.push({name, number});
+  const contacts = JSON.parse(localStorage.getItem('contacts')) || {};
+  const id = new Date().getTime().toString(); // generate a unique ID for the contact
+  contacts[id] = {name, number}; // store the contact under its ID
   localStorage.setItem('contacts', JSON.stringify(contacts));
 
   // Create a new contact item
-  const contactItem = createContact(name, number);
+  const contactItem = createContact(name, number, id);
   // Add new contact to the list
   contactList.appendChild(contactItem);
 
@@ -44,14 +46,19 @@ function addContact() {
 }
 
 // Function that creates the new contact 
-function createContact(name, number) {    
+function createContact(name, number, id) {    
   const contactItem = document.createElement("li");
   contactItem.textContent = name + " - " + number;
 
   const deleteButton = createDeleteButton();
 
   deleteButton.addEventListener("click", function() {
+    // Remove the contact from the list on the page
     contactList.removeChild(contactItem);
+    // Remove the contact from local storage using its ID as the key
+    const contacts = JSON.parse(localStorage.getItem('contacts')) || {};
+    delete contacts[id];
+    localStorage.setItem('contacts', JSON.stringify(contacts));
   });
 
   contactItem.appendChild(deleteButton);
@@ -83,8 +90,8 @@ function clearError() {
 }
 
 // Retrieve saved contacts on page load
-const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
-contacts.forEach(({name, number}) => {
-  const contactItem = createContact(name, number);
+const contacts = JSON.parse(localStorage.getItem('contacts')) || {};
+Object.entries(contacts).forEach(([id, {name, number}]) => {
+  const contactItem = createContact(name, number, id);
   contactList.appendChild(contactItem);
 });
