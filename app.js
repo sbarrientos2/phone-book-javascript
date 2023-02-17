@@ -12,7 +12,6 @@ document.querySelector("form").addEventListener("submit", function(event) {
 });
 
 // Function to add contact 
-// Function to add contact 
 function addContact() {
   // Check that the name is not empty
   const name = nameInput.value.trim();
@@ -33,6 +32,7 @@ function addContact() {
   const id = new Date().getTime().toString(); // generate a unique ID for the contact
   contacts[id] = {name, number}; // store the contact under its ID
   localStorage.setItem('contacts', JSON.stringify(contacts));
+
 
   // Create a new contact item
   const contactItem = createContact(name, number, id);
