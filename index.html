@@ -1,0 +1,34 @@
+<!-- Phone book web application. No information is stored in any db as of now. Reload = lose data-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="./styles.css">
+        <title>Contact List</title>
+    </head>
+    <body>
+
+        <div id="all">
+            <h1>Phone Book</h1>
+            <form>
+                <div class="user-input">
+                    <label>Name: </label>
+                    <input type="text" id="name-input" placeholder="Name">
+                </div>
+                <div class="user-input">
+                    <label>Phone Number: </label>
+                    <input type="text" id="phone-input" placeholder="Phone number">
+                </div>
+                <button id="add-button" type="submit" title="Add Contact">Add</button>         
+            </form>
+
+            <ul id="contact-list">
+                <!-- Your contacts will be added here -->
+            </ul>
+        </div>
+
+        <script src="./app.js"></script>
+
+    </body>
+</html>

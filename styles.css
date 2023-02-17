@@ -1,0 +1,20 @@
+.user-input {
+    padding: 5px;
+}
+
+#all {
+    text-align: center;
+}
+
+#delete-button {
+    margin-left: 2rem;
+    margin-top: .5rem;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+ul {
+    list-style: none;
+}
