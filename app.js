@@ -27,6 +27,11 @@ function addContact() {
     return;
   }
 
+  // Save the new contact to local storage
+  const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+  contacts.push({name, number});
+  localStorage.setItem('contacts', JSON.stringify(contacts));
+
   // Create a new contact item
   const contactItem = createContact(name, number);
   // Add new contact to the list
@@ -76,3 +81,10 @@ function showError(message) {
 function clearError() {
   errorContainer.textContent = '';
 }
+
+// Retrieve saved contacts on page load
+const contacts = JSON.parse(localStorage.getItem('contacts')) || [];
+contacts.forEach(({name, number}) => {
+  const contactItem = createContact(name, number);
+  contactList.appendChild(contactItem);
+});
