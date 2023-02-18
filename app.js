@@ -48,7 +48,7 @@ function addContact() {
 // Function that creates the new contact 
 function createContact(name, number, id) {    
   const contactItem = document.createElement("li");
-  contactItem.textContent = name + " - " + number;
+  contactItem.textContent = name + ", " + number;
 
   const deleteButton = createDeleteButton();
 
